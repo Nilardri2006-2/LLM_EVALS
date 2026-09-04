@@ -1,0 +1,62 @@
+[
+  {
+    "id": "g001",
+    "query": "how do you evaluate a rag chatbot?",
+    "ideal_answer": "A RAG chatbot should be evaluated at three levels: component level, pipeline level, and application or system level. At the component level, evaluate the retriever and generator separately. For the retriever, use recall and precision. For the generator, evaluate metrics such as faithfulness, answer relevance, and citation accuracy. At the pipeline level, evaluate the RAG triad: context relevance, faithfulness, and answer relevance. At the application level, evaluate things such as correctness, completeness, style, safety, and operational metrics. All these evaluations together form the eval suite, which can then be used for regression testing before deployment and online evaluation after deployment.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g002",
+    "query": "what are the three levels at which we evaluate a rag application?",
+    "ideal_answer": "A RAG application is evaluated at three levels: component level, pipeline level, and application or system level. At the component level, the retriever and generator are evaluated independently. At the pipeline level, the complete RAG flow is evaluated using metrics such as the RAG triad. At the application level, the overall system is evaluated for things such as correctness, completeness, style, safety, and operational performance.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g003",
+    "query": "what metrics do we use to evaluate the retriever?",
+    "ideal_answer": "The retriever is evaluated using recall and precision. Recall tells us how many of the correct or relevant documents the retriever was able to bring back. Precision tells us how many of the documents that were retrieved were actually useful or relevant. These metrics are used to independently check whether the retriever is fetching the right documents from the vector database.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g004",
+    "query": "what are the three metrics in the rag triad?",
+    "ideal_answer": "The RAG triad consists of context relevance, faithfulness, and answer relevance. Context relevance checks whether the context retrieved for a given question is relevant to that question. Faithfulness checks whether the generated answer is based on the retrieved context or whether the model hallucinated information. Answer relevance checks whether the generated answer is actually relevant to the user's question.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g005",
+    "query": "what is faithfulness in rag evaluation?",
+    "ideal_answer": "Faithfulness checks whether the generated answer is actually based on the retrieved context. If the answer is supported by the given context, it is considered faithful. If the model adds information that is not supported by the context and effectively hallucinates, the answer is not faithful.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g006",
+    "query": "why do we evaluate the retriever separately before evaluating the whole rag application?",
+    "ideal_answer": "The retriever is evaluated separately to determine whether it can fetch the right documents for a given question before connecting it with the rest of the RAG system. If the retriever brings back incorrect or irrelevant documents, the generator may produce a wrong answer because it is working with bad context. Therefore, the retriever is first evaluated independently using recall and precision before moving on to the generator and the complete RAG pipeline.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g007",
+    "query": "what metrics are used to evaluate the generator?",
+    "ideal_answer": "The generator is evaluated using metrics such as faithfulness, answer relevance, and citation accuracy. Faithfulness checks whether the answer is generated from the provided context rather than hallucinated. Answer relevance checks whether the generated answer is relevant to the question. Citation accuracy checks whether the citations or references provided by the system correctly point to the source from which the information was taken.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g008",
+    "query": "what is an eval suite in the context of a rag application?",
+    "ideal_answer": "An eval suite is the combined collection of all the evaluations used to test the application from different angles. For the RAG chatbot, this includes component-level, pipeline-level, and application-level evaluations, along with safety and operational evaluations. Instead of running only one test, the entire set of tests is run together to understand whether the application is working correctly from every aspect.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g009",
+    "query": "what do we check at the application level of rag evaluation?",
+    "ideal_answer": "At the application level, we evaluate the overall quality and behaviour of the RAG system. This includes checking correctness, completeness, and style. Correctness checks whether the answer is correct, while completeness checks whether the answer addresses all parts of the question. Style can also be evaluated to ensure that the application's explanations follow the desired style. Application-level evaluation also includes safety checks and operational metrics.",
+    "source": "Session 8"
+  },
+  {
+    "id": "g010",
+    "query": "what happens after completing all the rag evaluations?",
+    "ideal_answer": "After completing the different RAG evaluations, the results are combined into an eval suite and used for regression testing. The system is compared against a baseline to determine whether a new version is improving or getting worse. Once regression testing is completed and a new baseline is established, the application can be deployed. Even after deployment, evaluation does not stop; online evaluations are used to monitor the application in production.",
+    "source": "Session 8"
+  }
+]

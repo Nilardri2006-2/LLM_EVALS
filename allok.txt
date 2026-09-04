@@ -1,1 +1,17 @@
 all ok
+uv add langchain-openai langchain-chroma langchain-text-splitters langchain-core chromadb openai sentence-transformers deepeval pytest python-dotenv langchain-cohere
+build the retriever 1st
+query->embediing model->vector->vector db->chunks->find->come and give->embed->text->return 
+
+failures during retrivation[failure metric]
+    1. retriver brother getting different context which are not needed, like need 1,2 getting 9 , 10-waste
+    --->to evaluate this, wee need a matrix called RECALL
+    RECALL=out of all relevant context how many from vector db our retriever can bring,,,example 3/5
+    2. retriver brother geeting some irrelevant and some relevant context, irrelevent ones are called noise--noisey  context,,like 1,2 needed, getting 1,4,5---wasted
+    --->to evaluate this, wee need a matrix called PRECISION
+    PRECISION = out of brought context how many of them are correct?
+
+    # to increase recall we need to increase value of K ex: 5->10, but then precision reduces,,thats a trade off between 2
+    # as we need the golden dataset to check this, so this 2 metrices are REFERENCE BASED EVALS
+
+    
