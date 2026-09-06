@@ -184,4 +184,34 @@ innvoation 2 =
 
 this workflow helps to kepp the evaluatuation not varying in each time
 
-correctness metri
+## RAG Application Metrics
+
+- **Correctness** → Is the answer **factually correct**?
+  - Compares Actual vs Expected Answer.
+  - **Truth / Accuracy**
+
+- **Completeness** → Did the answer cover the **important points**?
+  - Checks coverage of Expected Answer.
+  - **Coverage**
+
+- **Style** → Is the answer presented in the **desired way**?
+  - Checks tone, clarity, explanation, etc.
+  - **Presentation**
+
+### How DeepEval Calculates
+
+`Actual + Expected Answer`
+→ **GEval**
+→ **LLM Judge (Cohere)**
+→ Judge follows **evaluation steps + rubric**
+→ gives **0–10 score**
+→ DeepEval **normalizes to 0–1**
+
+`Score ≥ 0.70 → PASS`  
+`Score < 0.70 → FAIL`
+
+**In short:**  
+Correctness = **Truth** | Completeness = **Coverage** | Style = **Presentation**
+here is the test result :=
+![alt text](image-13.png)
+
