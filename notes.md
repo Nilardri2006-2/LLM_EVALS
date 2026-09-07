@@ -213,5 +213,37 @@ this workflow helps to kepp the evaluatuation not varying in each time
 **In short:**  
 Correctness = **Truth** | Completeness = **Coverage** | Style = **Presentation**
 here is the test result :=
-![alt text](image-13.png)
+ ![alt text](image-13.png)
 
+ metric in deep eval called toxicity
+ The video outlines several strategies to improve the toxicity score of an LLM-based application if the initial results are unsatisfactory (58:48 - 1:01:07):
+
+Switch to a better model: Upgrade to a more advanced, state-of-the-art model that is already well-aligned and inherently less prone to producing toxic content.
+System Prompt Refinement: Explicitly update the system prompt to define the assistant's desired tone, specifically instructing it to avoid insults, taunts, or inappropriate analogies.
+Implement Guardrails: Use input guardrails to analyze and filter queries before they reach the model, or apply output guardrails to screen and filter responses before they are displayed to the user.
+Systematic Fine-tuning: As a final resort, if other methods fail, you can fine-tune the model on a specialized dataset to systematically remove toxic behaviors from its output.
+
+results after toxicity eval
+![alt text](image-14.png)
+
+![alt text](image-15.png)
+The video suggests several approaches to mitigate data leakage and improve security scores in an LLM application (1:11:49 - 1:15:10, 1:15:10 - 1:18:00):
+
+System Prompt Hardening: Incorporate explicit instructions into the system prompt that forbid the model from revealing sensitive information, such as system prompts, internal configuration, or personal user data (1:15:10 - 1:16:15).
+
+Structuring Evaluation Pipelines: Use multi-evaluator setups to specifically audit for different types of leakage, including prompt leakage, corpus/knowledge base leakage, and Personally Identifiable Information (PII) leakage (1:07:20 - 1:11:49).
+
+Implementing Guardrails: Employ dedicated guardrails to filter output or retrieved context before it reaches the end user, ensuring no sensitive data is surfaced in the response (1:11:49 - 1:12:20).
+![alt text](image-16.png)
+its the result during leakage
+![alt text](image-17.png)
+![alt text](image-18.png)
+To improve the scope adherence of an LLM-based application, the video outlines a structured approach involving defining clear boundaries, building a test dataset, and refining the system instructions. Here are the key steps:
+
+Define a Strict Safety Policy: Explicitly state what the assistant is allowed to answer and what it must refuse. For example, if your bot is a course assistant, define its scope to only answer questions related to your specific learning material (1:23:34 - 1:24:49).
+Create a Diverse Evaluation Dataset: Develop a 'golden' dataset containing a mix of benign (valid) questions, adversarial (out-of-scope) questions, and mixed queries (which combine a valid question with an out-of-scope request). This helps identify if the model properly distinguishes between what it should and should not handle (1:24:52 - 1:25:56).
+Implement Rigorous Evaluation: Use custom metrics, such as a G-Eval framework, to evaluate the model's responses against your defined scope policy. The metric should check if the model answers the valid portion of a query while refusing the irrelevant or out-of-scope portions (1:26:00 - 1:28:13).
+Refine System Prompts: Use the insights from your failures to harden your system prompt. By adding clear instructions and constraints based on real-world edge cases discovered during evaluation, you can guide the LLM to better maintain its operational boundaries (1:31:19 - 1:32:00).
+Iterate with CI/CD: Instead of making ad-hoc changes, treat these improvements as part of a regression testing cycle where you run the full evaluation suite to ensure that changes intended to fix scope drift don't negatively impact other performance metrics (1:34:00 - 1:35:14).
+result:
+![alt text](image-19.png)
