@@ -247,3 +247,39 @@ Refine System Prompts: Use the insights from your failures to harden your system
 Iterate with CI/CD: Instead of making ad-hoc changes, treat these improvements as part of a regression testing cycle where you run the full evaluation suite to ensure that changes intended to fix scope drift don't negatively impact other performance metrics (1:34:00 - 1:35:14).
 result:
 ![alt text](image-19.png)
+
+Operations evals
+![alt text](image-20.png)
+
+
+![alt text](image-21.png)
+p95 = 95% of requests are done in this time period
+![alt text](image-22.png)
+
+Improving latency in a RAG system involves optimizing different stages of your pipeline. Based on the session, here are the key strategies to improve system speed:
+
+Model Selection: Choosing a more efficient, smaller model can significantly reduce generation time compared to large, complex models (1:04:20).
+Context Optimization: Reducing the context size passed to the model by using smaller chunks or applying contextual compression helps the model process information faster (1:04:31).
+Prompt Engineering: Making your system prompt more efficient and concise ensures the model spends less time processing unnecessary instructions (1:04:54).
+Caching: Implementing prompt caching allows you to reuse results for recurring queries, which drastically cuts down on redundant processing (1:05:24).
+Streaming: Utilizing streaming architectures (as discussed for TTFT - Time to First Token) allows users to see the beginning of the answer immediately, improving the perceived latency even if the total time remains similar (23:00).
+Infrastructure Tuning: For production, ensuring your system handles cold starts efficiently and managing your load through horizontal scaling or optimizing your hosting environment are essential (24:45).
+
+To reduce costs in a RAG system, you should primarily focus on optimizing your LLM token usage, as this is typically the most significant expense. Here are the key strategies discussed in the video (1:04:20):
+
+Reduce Context Size: Minimize the amount of information sent to the model by using smaller chunks or contextual compression (1:04:31). Sending fewer tokens directly lowers input costs.
+Optimize Prompts: Carefully refine your system prompts to be more efficient and concise, ensuring you aren't paying for unnecessary instructions (1:04:54).
+Implement Caching: Use prompt caching to reuse results for recurring queries, which effectively avoids redundant API costs (1:05:24).
+Model Selection: Switch to a cheaper, smaller model where high-end capabilities are not strictly required, or use model routing to match query complexity with the appropriate model (1:05:21).
+Enforce Output Limits: Instruct the model to provide concise answers or set a hard cap on the output word count to prevent runaway token generation (1:05:11).
+
+![alt text](image-23.png)
+![alt text](image-24.png)
+
+To improve the **reliability** of a *RAG* application, the focus must be on minimizing errors, handling failures gracefully, and testing at scale. Key strategies discussed in the video include:
+
+* **Categorize Failures:** Instead of a generic error rate, break down failures by their source (e.g., *LLM API issues*, *retriever failures*, *rate limits*, or *timeouts*). This granular tracking allows for targeted fixes (1:10:10).
+* **Use Robust Error Handling:** Implement comprehensive `try-except` blocks throughout your pipeline to catch and categorize errors at each stage—from retrieval and re-ranking to generation (1:11:36).
+* **Stress Testing:** A pipeline that works for a single user may fail under heavy load. You must measure reliability under **concurrent user requests** to identify performance bottlenecks that only appear at scale (1:11:54).
+* **Increase Sampling:** Use a sufficiently large and diverse set of queries (simple, complex, and long-context) to ensure your reliability metrics are representative of real-world usage rather than just ideal, small-scale test runs (1:12:38, 1:13:04).
+* **Implement Retries:** Configure smart retry logic for transient errors, while keeping track of the *retry rate* to understand how often your system requires multiple attempts to successfully serve a request (1:09:42).
