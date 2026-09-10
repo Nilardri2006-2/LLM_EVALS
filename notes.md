@@ -283,3 +283,30 @@ To improve the **reliability** of a *RAG* application, the focus must be on mini
 * **Stress Testing:** A pipeline that works for a single user may fail under heavy load. You must measure reliability under **concurrent user requests** to identify performance bottlenecks that only appear at scale (1:11:54).
 * **Increase Sampling:** Use a sufficiently large and diverse set of queries (simple, complex, and long-context) to ensure your reliability metrics are representative of real-world usage rather than just ideal, small-scale test runs (1:12:38, 1:13:04).
 * **Implement Retries:** Configure smart retry logic for transient errors, while keeping track of the *retry rate* to understand how often your system requires multiple attempts to successfully serve a request (1:09:42).
+regression testing:::
+  ![alt text](image-25.png)
+  ![alt text](image-26.png)
+  more golden dataset, more safety and precission
+  ![alt text](image-27.png)
+  ![alt text](image-28.png)
+
+  Think of it like checking a car before a long trip:
+
+Retriever eval → First check if the app is finding the right information.
+If retrieval is bad, everything afterward is affected.
+Generator eval → Check if the LLM can write a good answer from good information.
+This separates LLM problems from retrieval problems.
+RAG pipeline eval → Check the whole retrieval → answer process together.
+This tells you how the actual RAG system performs.
+Application eval → Check whether the final answer is correct, complete, and well-written for the user.
+Safety eval → Check that it doesn't leak information, go out of scope, or produce toxic content.
+Operational eval → Check whether it is fast, cheap, and reliable.
+run_suite.py → Run everything together and save one complete snapshot.
+Baseline → If you're happy, save that snapshot as the trusted version.
+Change ONE thing → e.g. top_k 5 → 3.
+Run run_suite.py again → Get the new candidate snapshot.
+compare.py → Compare old vs new and decide PASS / REVIEW / FAIL.
+
+In short:
+
+Find info → Generate → Whole RAG → User quality → Safety → Speed/cost/reliability → Snapshot → Baseline → Change → Snapshot → Compare.
