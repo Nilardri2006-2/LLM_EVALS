@@ -310,3 +310,8 @@ compare.py → Compare old vs new and decide PASS / REVIEW / FAIL.
 In short:
 
 Find info → Generate → Whole RAG → User quality → Safety → Speed/cost/reliability → Snapshot → Baseline → Change → Snapshot → Compare.
+
+    @traceable(run_type="chain" , name="RagPipeline")
+ add this to trace at any point in langsmith
+for quality evals we need to do same evalutation in online  as we did druing offline 
+ ![alt text](image-29.png)
